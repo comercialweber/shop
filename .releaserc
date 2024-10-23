@@ -1,0 +1,44 @@
+{
+  "branches": [
+    {
+      "name": "main"
+    },
+    {
+      "name": "develop",
+      "prerelease": "beta"
+    },
+    {
+      "name": "release/*",
+      "prerelease": "rc"
+    },
+    {
+      "name": "hotfix/*",
+      "prerelease": "hotfix"
+    },
+    {
+      "name": "alpha",
+      "prerelease": "alpha"
+    }
+  ],
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
+    "@semantic-release/changelog",
+    "@semantic-release/npm",
+    "@semantic-release/github",
+    [
+      "@semantic-release/git",
+      {
+        "assets": [
+          "CHANGELOG.md",
+          "package.json",
+          "package-lock.json"
+        ],
+        "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+      }
+    ],
+    {
+      "verifyReleaseCmd": "echo ${nextRelease.version}"
+    }
+  ]
+}

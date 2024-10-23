@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app
+  namespace: default
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: app
+      namespace: default
+  template:
+    metadata:
+      labels:
+        app: app
+        namespace: default
+        version: A
+    spec:
+      containers:
+        - name: app
+          image: app
+          ports:
+            - containerPort: 3000
+          resources:
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
